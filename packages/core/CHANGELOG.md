@@ -1,5 +1,49 @@
 # @wagmi/core
 
+## 0.6.0
+
+### Minor Changes
+
+- [#940](https://github.com/wagmi-dev/wagmi/pull/940) [`b6cb8f4`](https://github.com/wagmi-dev/wagmi/commit/b6cb8f4cd15eb13073bc7e9ecb4bfa2c261c0663) Thanks [@jxom](https://github.com/jxom)! - **Breaking**: `watchSigner` now requires an arguments object (that accepts an optional `chainId`) as it's first parameter.
+
+  ```diff
+  import { watchSigner } from `@wagmi/core`
+
+  -watchSigner(signer => {
+  +watchSigner({}, signer => {
+    console.log('new signer!', signer)
+  })
+  ```
+
+* [#940](https://github.com/wagmi-dev/wagmi/pull/940) [`b6cb8f4`](https://github.com/wagmi-dev/wagmi/commit/b6cb8f4cd15eb13073bc7e9ecb4bfa2c261c0663) Thanks [@jxom](https://github.com/jxom)! - **Breaking**: `prepareSendTransaction` now throws when a `chainId` is specified and the end-user is on a different chain id (the wrong network).
+
+- [#940](https://github.com/wagmi-dev/wagmi/pull/940) [`b6cb8f4`](https://github.com/wagmi-dev/wagmi/commit/b6cb8f4cd15eb13073bc7e9ecb4bfa2c261c0663) Thanks [@jxom](https://github.com/jxom)! - **Breaking**: `prepareWriteContract` now throws when a `chainId` is specified and the end-user is on a different chain id (the wrong network).
+
+* [#940](https://github.com/wagmi-dev/wagmi/pull/940) [`b6cb8f4`](https://github.com/wagmi-dev/wagmi/commit/b6cb8f4cd15eb13073bc7e9ecb4bfa2c261c0663) Thanks [@jxom](https://github.com/jxom)! - **Breaking**: `prepareSendTransaction` now only accepts a `signer` instead of `signerOrProvider`.
+
+  This is to reach parity with `prepareWriteContract`.
+
+  If no `signer` is provided, wagmi will use the signer that is currently connected. If no user is connected, then `prepareWriteContract` will throw an error.
+
+### Patch Changes
+
+- [#940](https://github.com/wagmi-dev/wagmi/pull/940) [`b6cb8f4`](https://github.com/wagmi-dev/wagmi/commit/b6cb8f4cd15eb13073bc7e9ecb4bfa2c261c0663) Thanks [@jxom](https://github.com/jxom)! - The `fetchSigner` action now accepts an optional `chainId` to use for signer initialization as an argument.
+
+  ```tsx
+  import { fetchSigner } from '@wagmi/core'
+  import { optimism } from '@wagmi/core/chains'
+
+  // ...
+
+  fetchSigner({ chainId: optimism.id })
+  ```
+
+* [#1046](https://github.com/wagmi-dev/wagmi/pull/1046) [`ab9ecaa`](https://github.com/wagmi-dev/wagmi/commit/ab9ecaa74dfa4324279e167dd7e348319ef7d35d) Thanks [@jxom](https://github.com/jxom)! - make ethers block format validator compatible with Celo
+
+- [#1050](https://github.com/wagmi-dev/wagmi/pull/1050) [`73d4d47`](https://github.com/wagmi-dev/wagmi/commit/73d4d47bc679f4f9a1cf46010fe2bf858c9d0b5c) Thanks [@jxom](https://github.com/jxom)! - update dependencies
+
+  - `zustand@4.1.1`
+
 ## 0.5.8
 
 ### Patch Changes
